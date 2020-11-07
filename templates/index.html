@@ -1,40 +1,75 @@
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for msg in messages %}
-<p> {{msg}}</p>
-{% endfor %}
-{% endif %}
-{% endwith %}
+{% extends 'layaout.html' %}
 
+{% block body %}
 
-<form action="/add_contact", method="post">
-    <input type="text" name="nombres" placeholder="Nombres">
-    <input type="text" name="telefono" placeholder="Teléfono">
-    <input type="text" name="email" placeholder="Email">
-    <button type="submit">Save</button>
-</form>
+<div class="row">
 
-<table border="1">
-    <thead>
-        <tr>
-            <td>Nombres</td>
-            <td>Telefono</td>
-            <td>Email</td>
-            <td>Acciones</td>
-        </tr>
-    </thead>
-    <tbody>
-        {% for c in contactos %}
-        <tr>
-            <td> {{ c.1 }} </td>
-            <td> {{ c.2 }} </td>
-            <td> {{ c.3 }} </td>
-            <td>
-                <a href="/edit/{{ c.0 }}">Edit</a>
-                <a href="/delete/{{ c.0 }}">Delete</a>
-            </td>
-        </tr>
+    <div class="col-md-4">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p> {{msg}}</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
         {% endfor %}
-    </tbody>
+        {% endif %}
+        {% endwith %}
 
-</table>
+        <div class="card card-body">
+            <form action="/add_contact", method="post">
+                <div class="form-group">
+                    <input type="text" name="nombres" placeholder="Nombres" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="telefono" placeholder="Teléfono" class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="email" placeholder="Email" class="form-control">
+                </div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-success btn-block">Save</button>
+                </div>
+            </form>
+        </div>
+
+        
+
+    </div>
+
+    <div class="col-md-8">
+        <table class="table table-bordered bg-white table-sm table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Nombres</td>
+                    <th scope="col">Telefono</td>
+                    <th scope="col">Email</td>
+                    <th scope="col">Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in contactos %}
+                <tr>
+                    <td> {{ c.1 }} </td>
+                    <td> {{ c.2 }} </td>
+                    <td> {{ c.3 }} </td>
+                    <td>
+                        <a href="/edit/{{ c.0 }}" class="btn btn-outline-primary">Edit</a>
+                        <a href="/delete/{{ c.0 }}" class="btn btn-outline-danger btn-delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        
+        </table>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %}
