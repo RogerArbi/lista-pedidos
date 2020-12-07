@@ -1,0 +1,115 @@
+{% extends 'layaout.html' %}
+
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-6">
+    </div>
+
+    <div class="col-md-6">
+        <div class="col-md-3 form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+            <label class="form-check-label" for="inlineCheckbox1">Efectivo</label>
+        </div>
+        <div class="col-md-3 form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">VISA</label>
+        </div>
+        <div class="col-md-3 form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+            <label class="form-check-label" for="inlineCheckbox2">Yape</label>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <p> {{msg}}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="card card-body">
+            <form action="/add_contact" , method="post">
+                <div class="form-group">
+                    <label for="producto">Producto</label>
+                    <input type="text" name="producto" placeholder="¿Qué producto desea?" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="text" name="cantidad" placeholder="¿En qué cantidad?" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="Marca">Marca</label>
+                    <input type="text" name="marca" placeholder="¿Qué marca?" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="tamanio">Tamaño</label>
+                    <input type="text" name="tamanio" placeholder="¿Qué tamaño?" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-warning btn-block">Guardar Lista</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="row">
+            <table class="table table-bordered bg-white table-sm table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Producto</td>
+                        <th scope="col">Cantidad</td>
+                        <th scope="col">Marca</td>
+                        <th scope="col">Tamaño</td>
+                        <th scope="col">Acciones</th>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in contactos %}
+                    <tr>
+                        <td> {{ c.1 }} </td>
+                        <td> {{ c.2 }} </td>
+                        <td> {{ c.3 }} </td>
+                        <td> {{ c.4 }} </td>
+                        <td>
+                            <a href="/edit/{{ c.0 }}" class="btn btn-outline-primary">Editar</a>
+                            <a href="/delete/{{ c.0 }}" class="btn btn-outline-danger btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-8">
+                <a href="/" class="btn btn-primary btn-center">Regresar</a>
+                <a href="/limpiar" class="btn btn-danger btn-left">Borrar lista</a>
+                <a href="/envio" class="btn btn-success">Enviar lista de pedidos</a>
+            </div>
+        </div>        
+    </div>
+
+</div>
+
+
+
+{% endblock %}

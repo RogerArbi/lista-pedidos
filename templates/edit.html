@@ -10,19 +10,24 @@
         
         <form action = "/update/{{contacto.0}}", method="post">
             <div class="form-group">
-                <!-- <label for="nombres">Nombres</label> -->
-                <input type="text" placeholder="Nombres" class="form-control" name="nombres" value="{{contacto.1}}">
-                <small id="emailHelp" class="form-text text-muted">Nombres</small>
+                <!-- <label for="producto">Producto</label> -->
+                <input type="text" placeholder="Producto" class="form-control" name="producto" value="{{contacto.1}}" required>
+                <small id="emailHelp" class="form-text text-muted">Producto</small>
             </div>
             <div class="form-group">
-                <!-- <label for="telefono">Telefono</label> -->
-                <input type="number" placeholder="Celular o Fijo" min="011000000" max="999999999" class="form-control" name="telefono" value="{{contacto.2}}">
-                <small id="numberHelp" class="form-text text-muted">Telefono</small>
+                <!-- <label for="cantidad">Cantidad</label> -->
+                <input type="text" placeholder="Cantidad" class="form-control" name="cantidad" value="{{contacto.2}}" required>
+                <small id="numberHelp" class="form-text text-muted">Cantidad</small>
             </div>
             <div class="form-group">
-                <!-- <label for="email">Email</label> -->
-                <input type="email" placeholder="Correo electrónico" class="form-control" name="email" value="{{contacto.3}}">
-                <small id="emailHelp" class="form-text text-muted">Ingresar el correo.</small>
+                <!-- <label for="marca">Marca</label> -->
+                <input type="text" placeholder="Marca" class="form-control" name="marca" value="{{contacto.3}}">
+                <small id="numberHelp" class="form-text text-muted">Marca</small>
+            </div>
+            <div class="form-group">
+                <!-- <label for="tamanio">Tamaño</label> -->
+                <input type="text" placeholder="Tamaño" class="form-control" name="tamanio" value="{{contacto.4}}">
+                <small id="emailHelp" class="form-text text-muted">Tamaño</small>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-outline-warning btn-block">Submit</button>
